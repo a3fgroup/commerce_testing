@@ -2,7 +2,7 @@
 from selenium import webdriver
 import unittest
 
-class UntitledTestCase(unittest.TestCase):
+class TestCase(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
         self.driver.implicitly_wait(30)
@@ -16,17 +16,7 @@ class UntitledTestCase(unittest.TestCase):
         driver.find_element_by_link_text("2").click()
         driver.find_element_by_link_text("3").click()
         driver.find_element_by_link_text("1").click()
-    
-    def is_element_present(self, how, what):
-        try: self.driver.find_element(by=how, value=what)
-        except NoSuchElementException as e: return False
-        return True
-    
-    def is_alert_present(self):
-        try: self.driver.switch_to_alert()
-        except NoAlertPresentException as e: return False
-        return True
-    
+
     def close_alert_and_get_its_text(self):
         try:
             alert = self.driver.switch_to_alert()
